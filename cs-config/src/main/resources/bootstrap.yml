@@ -1,0 +1,21 @@
+server:
+  port: 8750
+
+spring:
+  application:
+    name: config-service
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/config/
+  profiles:
+    active: native
+
+eureka:
+  instance:
+    hostname: '@eureka.instance.hostname@'
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: '@eureka.client.serviceUrl.defaultZone@'
