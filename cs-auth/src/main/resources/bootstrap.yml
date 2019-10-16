@@ -1,0 +1,16 @@
+server:
+  port: 8730
+  servlet:
+    context-path: /auth
+
+spring:
+  application:
+    name: auth-service
+
+eureka:
+  instance:
+    hostname: '@eureka.instance.hostname@'
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: '@eureka.client.serviceUrl.defaultZone@'
