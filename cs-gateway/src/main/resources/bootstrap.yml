@@ -1,0 +1,41 @@
+server:
+  port: 8700
+
+eureka:
+  instance:
+    hostname: '@eureka.instance.hostname@'
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: '@eureka.client.serviceUrl.defaultZone@'
+
+spring:
+  application:
+    name: zuul-service
+  profiles:
+    active: '@spring.profiles.active@'
+  cloud:
+    config:
+      discovery:
+        service-id: config-service
+        enabled: true
+      fail-fast: true
+zuul:
+  prefix: /api
+  routes:
+    user:
+      path: /user-service/**
+      serveiceId: user-service
+      sensitiveHeaders: Set-Cookie,Authorization
+  host:
+    connect-timeout-millis: 50000
+    socket-timeout-millis: 50000
+
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 50000
+  ConnectTimeout: 50000
+
+
+

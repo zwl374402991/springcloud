@@ -43,5 +43,10 @@ public class TestController {
         return jwt;
     }
 
+    @GetMapping("/hello")
+    public String testGateway() {
+        return "hello gateway 1!";
+    }
+
 
 }

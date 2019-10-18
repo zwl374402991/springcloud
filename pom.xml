@@ -23,6 +23,7 @@
         <module>cs-config</module>
         <module>cs-auth</module>
         <module>cs-user</module>
+        <module>cs-gateway</module>
     </modules>
 
     <!-- maven项目统一属性配置 -->
