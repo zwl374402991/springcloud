@@ -14,11 +14,15 @@
     <groupId>com.archerzhang</groupId>
     <artifactId>cloudstudy</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>cloudstudy</name>
     <description>cloudstudy</description>
 
     <modules>
         <module>cs-center</module>
+        <module>cs-config</module>
+        <module>cs-auth</module>
+        <module>cs-user</module>
     </modules>
 
     <!-- maven项目统一属性配置 -->
@@ -26,6 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <swagger.version>2.9.2</swagger.version>
         <spring-cloud.version>Finchley.SR3</spring-cloud.version>
         <mysql.version>5.1.46</mysql.version>
         <unit.test.skip>true</unit.test.skip>
@@ -78,6 +83,16 @@
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

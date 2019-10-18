@@ -2,10 +2,10 @@ package com.archerzhang.cs.auth.controller;
 
 import com.archerzhang.cs.auth.utils.JwtHelper;
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwt;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,19 +27,19 @@ public class JwtCreateController {
      * @return
      */
     @PostMapping("/generateJWT")
-    public String generateJWT(@RequestParam Map<String, Object> map) {
+    public String generateJWT(@RequestBody Map<String, Object> map) {
         String jwt = JwtHelper.generateJWT(map);
         return jwt;
     }
 
     /**
      * 解析jwt
-     * @param jsonWenToken
+     * @param jsonWebToken
      * @return
      */
     @GetMapping("/parseJWT")
-    public Map<String, Object> parseJWT(@RequestParam String jsonWenToken) {
-        Claims claims = JwtHelper.parseJWT(jsonWenToken);
+    public Map<String, Object> parseJWT(@RequestParam("jsonWebToken") String jsonWebToken) {
+        Claims claims = JwtHelper.parseJWT(jsonWebToken);
         log.info("claims: {}", claims);
         return claims;
     }
@@ -49,7 +49,7 @@ public class JwtCreateController {
      * @param jsonWebToken
      * @return
      */
-    @RequestMapping("/refreshJWT")
+    @PostMapping(value = "/refreshJWT")
     public String refreshJWT(@RequestParam(name = "jwt") String jsonWebToken) {
         Claims claims = JwtHelper.parseJWT(jsonWebToken);
         long endTime = claims.getExpiration().getTime();

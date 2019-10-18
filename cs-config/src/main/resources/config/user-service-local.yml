@@ -1,0 +1,28 @@
+swagger:
+  show: true
+
+mybatis:
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  type-aliases-package: com.archerzhang.cs.user.module
+  config-location: classpath:mybatis/mybatis-config.xml
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/cs_user?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+    timeout: 3000ms
+
+logging:
+  config: classpath:logConf/logback-local.xml

@@ -1,4 +1,4 @@
-package com.archerzhang.cscenter;
+package com.archerzhang.cs.center;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

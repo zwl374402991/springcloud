@@ -1,11 +1,11 @@
 package com.archerzhang.cs.auth.utils;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
-
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
@@ -34,7 +34,7 @@ public class JwtHelper {
     public static String generateJWT(Map<String, Object> map) {
 
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
-        //添加构成JWT的参数
+        // 添加构成JWT的参数
         // 获取当前系统时间
         long nowTimeMillis = System.currentTimeMillis();
         Date now = new Date(nowTimeMillis);

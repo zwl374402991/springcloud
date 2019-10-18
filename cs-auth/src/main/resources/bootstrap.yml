@@ -1,7 +1,10 @@
+swagger:
+  show: true
+
 server:
   port: 8730
   servlet:
-    context-path: /auth
+    context-path: /auth-service
 
 spring:
   application:

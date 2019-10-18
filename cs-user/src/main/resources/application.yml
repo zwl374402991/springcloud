@@ -1,0 +1,9 @@
+spring:
+  redis:
+    host: '@spring.redis.host@'
+    port: 6379
+  datasource:
+    url: '@spring.datasource.url@'
+    username: '@spring.datasource.username@'
+    password: '@spring.datasource.password@'
+    driver-class-name: com.mysql.jdbc.Driver
