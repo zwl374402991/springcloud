@@ -1,12 +1,15 @@
 package com.archerzhang.cs.gateway.filter;
 
+import com.archerzhang.cs.gateway.config.AuthClientService;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.netflix.zuul.exception.ZuulException;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * 鉴权过滤器
@@ -16,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 @Slf4j
 public class AuthFilter extends ZuulFilter {
+
+    @Autowired
+    private AuthClientService authClientService;
 
     /**
      *  四种类型：pre,routing,error,post
@@ -45,7 +51,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
-        return false;
+        return true;
     }
 
     /**
@@ -58,13 +64,24 @@ public class AuthFilter extends ZuulFilter {
 
         RequestContext context = RequestContext.getCurrentContext();
         HttpServletRequest request = context.getRequest();
-        String token = request.getParameter("token");
-        if (token == null){
+
+        String jwt = request.getParameter("jwt");
+
+        if (jwt == null){
             context.setSendZuulResponse(false);
             context.setResponseStatusCode(401);
-            context.setResponseBody("unAuthrized");
+            context.setResponseBody("token 不存在");
             return null;
         }
+
+        Map<String, Object> claims = authClientService.parseJWT(jwt);
+        if (claims == null) {
+            context.setSendZuulResponse(false);
+            context.setResponseStatusCode(401);
+            context.setResponseBody("没有权限");
+            return null;
+        }
+
         return null;
     }
 }

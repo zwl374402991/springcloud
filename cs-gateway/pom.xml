@@ -16,6 +16,12 @@
 
     <dependencies>
 
+        <!--表示为去注册中心发现其他服务 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
         <!-- lombok 插件 -->
         <dependency>
             <groupId>org.projectlombok</groupId>

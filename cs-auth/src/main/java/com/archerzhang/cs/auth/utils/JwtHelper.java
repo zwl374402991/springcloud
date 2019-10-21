@@ -118,12 +118,12 @@ public class JwtHelper {
         Map<String, Object> map = new HashMap<>();
         map.put("zhang", "archer");
         map.put("meng", "rider");
-        map.put("saber", "test2");
+//        map.put("saber", "test2");
 //        map.put("customerId", "2");
 //        map.put("sysType", "1");
         String jsonWebKey = generateJWT(map);
         System.out.println(jsonWebKey);
-        Claims claims = parseJWT("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtZW5nIjoicmlkZXIiLCJzYWJlciI6InRlc3QyIiwibmJmIjoxNTcxMjE1NDgyLCJ6aGFuZyI6ImFyY2hlciIsImV4cCI6MTU3MTIxNzI4Mn0.7SIeSnl4epLuvsk1NEbPLO82XpF4GVwssrkvFwyVfqM");
+        Claims claims = parseJWT("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtZW5nIjoicmlkZXIiLCJuYmYiOjE1NzE2Mjg5MzEsInpoYW5nIjoiYXJjaGVyIiwiZXhwIjoxNTcxNjMwNzMxfQ.wXS8Fr_Z1Omr3dg9CNnvv4Fs_K1wv0_Q_3hoYRcvXKw");
         System.out.println(claims);
     }
 

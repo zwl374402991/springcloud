@@ -20,16 +20,25 @@ spring:
         service-id: config-service
         enabled: true
       fail-fast: true
+
+
+#注:
+## 1. 要向所有映射添加前缀，请将zuul.prefix设置为一个值，例如/ api。 默认情况下，
+##    在转发请求之前，从请求中删除代理前缀（使用zuul.stripPrefix = false关闭此行为）。
+## 2. prefix和stripPrefix(依赖于prefix的使用)连用影响是全局的
+## 3. path和stripPrefix连用影响是局部的
 zuul:
-  prefix: /api
+  prefix: /api                  # 添加路径前缀
   routes:
     user:
-      path: /user-service/**
-      serveiceId: user-service
-      sensitiveHeaders: Set-Cookie,Authorization
+      path: /user-service/**    # 原本的路径
+      serviceId: user-service   # 转发的路径
+      strip-prefix: false       # 去除代理前缀
+      sensitiveHeaders: Set-Cookie  # 过滤cookie,不会转发到下游
   host:
     connect-timeout-millis: 50000
     socket-timeout-millis: 50000
+
 
 ribbon:
   eureka:
@@ -38,4 +47,6 @@ ribbon:
   ConnectTimeout: 50000
 
 
-
+feign:
+  httpclient:
+    enabled: true
